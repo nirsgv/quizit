@@ -1,4 +1,9 @@
 <template>
+<div>
+  <div>
+    <input type="number" v-model.number="rows" @change="somefunction">
+    <input type="number" v-model.number="columns" @change="somefunction">
+  </div>
   <div class="grid">
     <ul v-for="(row, index) in table" :key="index">
       <Cell
@@ -10,6 +15,7 @@
       >
     </ul>
   </div>
+</div>
 </template>
 
 <script>
@@ -22,23 +28,33 @@ export default {
   },
   data: function() {
     return {
-      table: this.generateGrid(30, 30),
+      rows: 30,
+      columns: 30,
       intervalId: null,
+      table: this.generateGrid(this.rows || 30, this.columns || 30)
     };
   },
+  computed: {
+
+  },
   methods: {
+
     log(message) {
       console.log(message);
     },
+    somefunction() {
+      this.table = this.generateGrid(this.rows,this.columns)
+    },
     generateGrid(
-      rows = 30,
-      columns = 30,
+      rows,
+      columns,
       mapper = () => Boolean(Math.floor(Math.random() * 2))
     ) {
       return new Array(rows)
         .fill()
         .map(() => new Array(columns).fill().map(mapper));
     },
+    
     countActiveNeighbours(rowIdx, colIdx, indexedGrid) {
       let count = 0;
       for (let x = -1; x <= 1; x++) {
@@ -50,7 +66,7 @@ export default {
       return count;
     },
     animate(cb) {
-      return (this.intervalId = setInterval(cb, 1000));
+      return (this.intervalId = setInterval(cb, 100));
     },
     stopAnimate() {
       clearInterval(this.intervalId);
@@ -70,6 +86,7 @@ export default {
   created: function() {
     this.animate(this.proceed)
     this.countActiveNeighbours(10, 10, this.table);
+
   },
 };
 </script>

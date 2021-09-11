@@ -1,42 +1,35 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "eslint.validate": [
+    {
+      "language": "vue",
+      "autoFix": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:vue/essential"
-    ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+    {
+      "language": "html",
+      "autoFix": true
     },
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "vue"
-    ],
-    "rules": {
-        "no-unused-vars": 0,
-        "script-setup-uses-vars": 0
-    },
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
-    "eslint.validate": [
-        {
-          "language": "vue",
-          "autoFix": true
-        },
-        {
-          "language": "html",
-          "autoFix": true
-        },
-        {
-          "language": "javascript",
-          "autoFix": true
-        }
-      ]
+    {
+      "language": "javascript",
+      "autoFix": true
     }
+  ],
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended", "plugin:vue/essential"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+
+  "plugins": ["vue"],
+  "rules": {
+    "no-unused-vars": 0,
+    "script-setup-uses-vars": 0
+  }
+}
