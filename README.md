@@ -1,4 +1,4 @@
-# vue-gol
+# quizit
 
 ## Project setup
 ```
